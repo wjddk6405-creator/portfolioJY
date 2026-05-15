@@ -1,0 +1,596 @@
+/* door */
+#main {
+  height: 300vh; /* 문이 열리는 동안 스크롤할 총 길이. 숫자가 클수록 천천히 열림 */
+
+  /* overflow: hidden; */
+  position: relative;
+}
+#app {
+  position: relative;
+}
+.bgi {
+  position: relative;
+  z-index: 10; /* 문보다는 위, 거미보다는 아래 */
+  background-image: url(../img/bgi.png);
+  background-size: 100% auto;
+  /* height를 직접 주지 않아도 안의 내용물(container)이 길면 알아서 늘어납니다 */
+  min-height: 100vh;
+  height: 7000px;
+}
+.sticky-wrapper {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible; /* 문이 회전할 때 옆으로 튀어나오는 것만 숨김 */
+  background-color: #030201;
+  z-index: 1; /* 문이 아래 배경보다 밑에 있도록 설정 (필요 시) */
+}
+/* 문을 고정하고 3D 효과 부여 */
+.door-frame {
+  position: absolute;
+  top: 15%; /* 위로 조금 더 올리면 아래쪽이 더 많이 보입니다 */
+  left: 38%;
+  width: 25%;
+  height: 75%;
+  display: flex;
+  perspective: 1500px;
+  /* [추가] 프레임 자체에서도 넘치는 문이 보이도록 설정 */
+  overflow: visible;
+}
+
+/* 공통 문 스타일 */
+.door-bg {
+  /* width: 100%;
+  height: auto;
+  display: block; */
+  width: 100%;
+  height: 120%; /* 높이를 100%보다 크게 주어 아래로 튀어나오게 설정 */
+  object-fit: contain; /* 이미지가 찌그러지지 않게 */
+  position: absolute;
+  bottom: -10%; /* 아래쪽으로 튀어나오게 배치 */
+}
+.door {
+  width: 50%;
+  height: 105%;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  /* 부드러운 움직임을 원한다면 transition 추가 (선택사항) */
+  transition: transform 0.1s ease-out;
+}
+
+.left-door {
+  background-image: url(../img/left_door.png); /* 쪼개진 왼쪽 문 */
+  background-position: right; /* 문 중앙이 맞닿도록 설정 */
+  transform-origin: left; /* 왼쪽 축을 기준으로 열림 */
+}
+
+.right-door {
+  background-image: url(../img/right_door.png); /* 쪼개진 오른쪽 문 */
+  background-position: left; /* 문 중앙이 맞닿도록 설정 */
+  transform-origin: right; /* 오른쪽 축을 기준으로 열림 */
+}
+/* door */
+
+.web {
+  position: absolute;
+  top: 120px;
+  left: 2%;
+}
+
+/* 거미 이동 */
+.spider-wrap {
+  position: absolute;
+  top: -300px;
+  left: -60px;
+
+  z-index: 9999;
+
+  opacity: 0;
+
+  --line-height: 0px;
+}
+
+.spider {
+  width: 140px;
+}
+
+/* 회전 전용 레이어 추가 */
+
+.spider-inner {
+  transform: rotate(18deg);
+}
+
+.spider-line {
+  position: absolute;
+
+  top: -500px;
+  height: 580px;
+
+  left: 48.5%;
+
+  transform: translateX(-50%);
+
+  width: 1px;
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.35));
+
+  pointer-events: none;
+}
+
+/* ---거미 이동 --- */
+
+/* 프로필 타이틀 */
+.profile {
+  height: 985px;
+  margin-top: 400px;
+  padding-top: 450px;
+
+  position: relative;
+}
+
+.profile_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 120px;
+}
+.title_left {
+  line-height: 55px;
+  margin-left: 100px;
+}
+.title_left > h1 {
+  color: #f6f6f6;
+  font-size: 96px;
+  font-weight: 450;
+  letter-spacing: 3%;
+}
+.title_left > h3 {
+  font-size: 24px;
+  color: #d5d5d5;
+  font-weight: 400;
+  letter-spacing: -2%;
+  margin-left: 175px;
+}
+.title_right {
+  margin-top: -130px;
+  display: flex;
+  align-items: center;
+  margin-right: 130px;
+}
+.title_right > h3 {
+  font-size: 24px;
+  color: #555353;
+  font-weight: 500;
+  margin-top: 60px;
+}
+.title_right img {
+  margin-top: 40px;
+}
+/* 프로필 구조 */
+.profile_box {
+  display: flex;
+  justify-content: space-between;
+}
+.box_left {
+  display: flex;
+  gap: 50px;
+}
+.box_left .profileimg {
+  margin-top: 100px;
+}
+.profile_info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.profileimgBox p {
+  color: #d5d5d5;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.name_box {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+.birth {
+  margin-bottom: 30px;
+}
+.name_box h3 {
+  margin-right: 10px;
+
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.name_box p {
+  color: #d0d0d0;
+  font-size: 28px;
+}
+.info_box {
+  color: #fff;
+  font-size: 24px;
+  gap: 14px;
+  line-height: 45px;
+  margin-bottom: 30px;
+}
+.info_box h3 {
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.info_row {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.info_row p,
+.info_box > p {
+  color: #d5d5d5;
+
+  font-size: 24px;
+  font-weight: 400;
+
+  line-height: 1.8;
+}
+.profile_info .date {
+  color: #fff;
+  margin-right: 8px;
+}
+
+.box_right {
+  margin-top: 100px;
+}
+.box_right h3 {
+  font-size: 28px;
+  font-weight: 500;
+  color: #fff;
+
+  margin-left: 175px;
+  margin-bottom: 61px;
+}
+.box_right img {
+  margin-right: 36px;
+}
+/* ----프로필--- */
+
+.spider2 {
+  position: fixed;
+
+  bottom: 300px;
+  right: -100px;
+
+  width: 140px;
+
+  z-index: 9999;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    transform 0.05s linear,
+    opacity 0.2s ease;
+}
+
+/* My Work */
+/* 여백 공간 */
+/* 여백 공간 */
+.myWorkSpacer {
+  height: 120vh;
+}
+
+/* My Work */
+.myWorkSection {
+  height: 500vh;
+
+  position: relative;
+}
+
+.myWorkTitle {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+
+  background: transparent;
+}
+
+.workSvg {
+  width: 70vw;
+
+  overflow: visible;
+}
+
+.workSvg text {
+  fill: white;
+
+  font-size: 220px;
+
+  font-weight: 700;
+
+  letter-spacing: -0.08em;
+
+  font-family: sans-serif;
+}
+
+/* 이벤트 페이지, 배너 섹션 */
+.diagonalSection {
+  position: relative;
+
+  height: 500vh;
+  margin-top: -460vh;
+}
+
+/* 거미 배경 */
+.spiderBg {
+  position: fixed;
+
+  top: -50vh;
+  left: 30%;
+
+  transform: translateX(-50%);
+
+  width: 400px;
+
+  opacity: 0.3;
+
+  z-index: 1;
+
+  pointer-events: none;
+}
+
+.spiderBg img {
+  width: 100%;
+  display: block;
+}
+
+/* 공통 카드 */
+
+.diagCard {
+  position: sticky;
+
+  top: 3vh;
+
+  width: 400px;
+  height: 400px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(20px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  overflow: hidden;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+  padding: 10px;
+
+  font-size: 40px;
+  font-weight: 800;
+
+  color: #666666;
+
+  will-change: transform;
+
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.cardMedia {
+  position: absolute;
+  inset: 0;
+}
+
+.cardMedia img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 숫자 위로 */
+.cardNumber {
+  position: relative;
+  z-index: 2;
+  font-size: 40px;
+  color: #241e1e;
+  opacity: 0.3;
+  letter-spacing: -0.08em;
+}
+
+.card1 {
+  left: 2vw;
+
+  z-index: 1;
+}
+
+.card2 {
+  left: 15vw;
+
+  top: 5vh;
+
+  z-index: 2;
+}
+
+.card3 {
+  left: 28vw;
+
+  top: 9vh;
+
+  z-index: 3;
+}
+
+.card4 {
+  left: 45vw;
+
+  top: 14vh;
+
+  z-index: 4;
+}
+
+/* 카드 hover 패널 */
+.detailPanel {
+  position: fixed;
+
+  right: 5vw;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 300px;
+  height: 100%;
+
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+
+  overflow: hidden;
+
+  z-index: 50;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.detailInner {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+.detailImg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.sectionTitle {
+  position: fixed;
+
+  left: 26%;
+  bottom: 5vh;
+
+  transform: translateX(-50%);
+  letter-spacing: -0.05em;
+  font-size: 140px;
+  line-height: 0.9;
+
+  color: #ffffff;
+
+  font-family: "Felipa", serif;
+
+  z-index: 30;
+
+  opacity: 0;
+
+  white-space: nowrap;
+
+  pointer-events: none;
+}
+
+/* viewer */
+
+.viewerModal {
+  position: fixed;
+  inset: 0;
+
+  z-index: 999999;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: 0.35s ease;
+}
+
+.viewerModal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* 어두운 배경 */
+.viewerOverlay {
+  position: absolute;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.88);
+
+  backdrop-filter: blur(10px);
+}
+
+/* 실제 스크롤 영역 */
+.viewerContent {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow-y: auto;
+
+  z-index: 2;
+
+  padding: 80px 0;
+}
+
+/* 원본 이미지 */
+.viewerImg {
+  width: 70%;
+
+  display: block;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+}
+
+/* 닫기 버튼 */
+.viewerClose {
+  position: fixed;
+
+  top: 30px;
+  right: 40px;
+
+  z-index: 5;
+
+  background: none;
+  border: none;
+
+  color: white;
+
+  font-size: 40px;
+
+  cursor: pointer;
+}

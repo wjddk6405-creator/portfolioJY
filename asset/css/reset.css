@@ -1,0 +1,94 @@
+/* 박스 모델 통일 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/* 기본 여백 제거 */
+
+.container {
+  width: 1554px;
+  margin: 0 auto;
+}
+
+html,
+body {
+  margin: 0;
+  background-color: #030201;
+  transform: none !important;
+  filter: none !important;
+  perspective: none !important;
+  scroll-behavior: auto !important;
+}
+/* 폰트 기본값 */
+body {
+  font-family: "Pretendard";
+}
+/* 리스트 스타일 제거 */
+ul,
+ol,
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+/* 링크 초기화 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 이미지 반응형 기본 */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/* 폼 요소 폰트 통일 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  border: 0;
+  outline: none;
+  background: none;
+}
+
+/* 버튼 기본 UX */
+button {
+  cursor: pointer;
+}
+
+/* 테이블 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 제목 기본 여백 제거 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+/* 숨김 텍스트 (접근성) */
+.ir {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css -->
+    <link rel="stylesheet" href="asset/css/font.css" />
+    <link rel="stylesheet" href="asset/css/reset.css" />
+    <link rel="stylesheet" href="asset/css/style.css" />
+    <link rel="stylesheet" href="asset/css/responsive.css" />
+    <title>JuYeon</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- door -->
+      <main id="main">
+        <div class="sticky-wrapper">
+          <img src="asset/img/open_door.png" class="door-bg" />
+          <div class="door-frame">
+            <div class="door left-door"></div>
+            <div class="door right-door"></div>
+          </div>
+        </div>
+      </main>
+      <!-- door -->
+      <div class="bgi">
+        <img class="web" src="asset/img/web.png" alt="거미줄" />
+        <!-- profile -->
+        <div class="container">
+          <div class="profile">
+            <div class="profile_title">
+              <div class="spider-wrap">
+                <div class="spider-line"></div>
+                <div class="spider-inner">
+                  <img class="spider" src="asset/img/1f577-fe0f.gif" alt="거미" />
+                </div>
+              </div>
+              <!-- 프로필 타이틀 -->
+              <div class="title_left">
+                <h1>Profile</h1>
+                <h3>JooYeon</h3>
+              </div>
+              <div class="title_right">
+                <img src="asset/img/logo.png" alt="" />
+                <h3>Web <br />Portfolio</h3>
+              </div>
+              <!-- ---프로필 타이틀 --- -->
+            </div>
+            <!-- 프로필 구조 -->
+            <div class="profile_box">
+              <div class="box_left">
+                <img src="asset/img/roundlong.png" alt="" />
+                <div class="profileimgBox">
+                  <img class="profileimg" src="asset/img/profileimg.png" alt="" />
+                  <p>Web Designer</p>
+                </div>
+                <div class="profile_info">
+                  <div class="name_box">
+                    <h3>Name</h3>
+                    <p>유주연</p>
+                  </div>
+                  <div class="name_box birth">
+                    <h3>Birth</h3>
+                    <p>2003.03.10</p>
+                  </div>
+                  <div class="info_box">
+                    <h3>Experience</h3>
+                    <div class="info_row">
+                      <p class="date">2023.11~2025.3</p>
+                      <p>(주)에스텍시스템 근무</p>
+                    </div>
+                  </div>
+                  <div class="info_box">
+                    <h3>Education</h3>
+                    <div class="info_row">
+                      <p class="date">2025.11~2026.5</p>
+                      <p>천호MBC아카데미</p>
+                      <p>생성형 AI 기반 영상·웹퍼블리셔 & 프론트엔드 과정 수료</p>
+                    </div>
+                    <div class="info_row">
+                      <p class="date">2022</p>
+                      <p>한영고등학교 졸업</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box_right">
+                <h3>Skill</h3>
+                <img src="asset/img/skill.png" alt="" />
+              </div>
+            </div>
+            <!-- ---프로필 구조--- -->
+          </div>
+        </div>
+        <img class="spider2" src="asset/img/1f577-fe0f.gif" alt="거미" />
+
+        <!-- Mywork -->
+        <div class="myWorkSpacer"></div>
+
+        <section class="myWorkSection">
+          <div class="myWorkTitle">
+            <svg class="workSvg" viewBox="0 0 1600 400" xmlns="http://www.w3.org/2000/svg">
+              <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">My work</text>
+            </svg>
+          </div>
+        </section>
+        <!-- ----My work---- -->
+
+        <!-- 이벤트 페이지 , 배너 섹션 -->
+        <section class="diagonalSection">
+          <div class="spiderBg">
+            <img src="asset/img/eventspider.png" alt="거미" />
+          </div>
+
+          <div class="diagCard card1">
+            <div class="cardMedia">
+              <img src="asset/img/banner2.png" alt="" />
+            </div>
+            <div class="cardNumber">01</div>
+          </div>
+          <div class="diagCard card2">
+            <div class="cardMedia">
+              <img src="asset/img/banner1.png" alt="" />
+            </div>
+            <div class="cardNumber">02</div>
+          </div>
+          <div class="diagCard card3">
+            <div class="cardMedia">
+              <img src="asset/img/banner3.png" alt="" />
+            </div>
+            <div class="cardNumber">03</div>
+          </div>
+          <div class="diagCard card4">
+            <div class="cardMedia">
+              <img src="asset/img/eventpage.png" alt="" />
+            </div>
+            <div class="cardNumber">04</div>
+          </div>
+        </section>
+        <h2 class="sectionTitle">Event&<br />Banner Design</h2>
+
+        <!-- 카드 hover 패널 -->
+        <div class="detailPanel">
+          <div class="detailInner">
+            <img class="detailImg" src="" alt="" />
+            <div class="detailNumber">Hover a card</div>
+          </div>
+        </div>
+        <!-- 카드 hover/// -->
+
+        <!-- viewer -->
+        <div class="viewerModal">
+          <div class="viewerOverlay"></div>
+
+          <div class="viewerContent">
+            <img class="viewerImg" src="" alt="" />
+          </div>
+
+          <button class="viewerClose">✕</button>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+
+  <!-- lenis -->
+  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+
+  <script>
+    const spiderWrap = document.querySelector(".spider-wrap");
+
+    const leftDoor = document.querySelector(".left-door");
+    const rightDoor = document.querySelector(".right-door");
+
+    const spider2 = document.querySelector(".spider2");
+
+    // ---------------- 스크롤 이벤트 ----------------
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      const winHeight = window.innerHeight;
+
+      // 문
+      const startThreshold = winHeight * 2;
+
+      let doorRatio = Math.min(1, scrollY / startThreshold);
+
+      const angle = doorRatio * 110;
+
+      leftDoor.style.transform = `rotateY(${-angle}deg)`;
+      rightDoor.style.transform = `rotateY(${angle}deg)`;
+
+      // 상단 거미
+      const spiderStart = startThreshold;
+
+      const moveRange = 1200;
+
+      let progress = (scrollY - spiderStart) / moveRange;
+
+      progress = Math.max(0, Math.min(progress, 1));
+
+      const moveY = -1000 + 1500 * progress;
+
+      spiderWrap.style.transform = `translateY(${moveY}px)`;
+
+      spiderWrap.style.opacity = progress;
+
+      // 하단 거미
+      if (scrollY > 4000) {
+        spider2.style.opacity = 1;
+
+        let move = (scrollY - 4000) * 0.3;
+
+        spider2.style.transform = `translate(-${move}px, -${move}px) rotate(-110deg)`;
+      } else {
+        spider2.style.opacity = 0;
+      }
+    });
+
+    // ---------------- GSAP ----------------
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.set(".workSvg", {
+      scale: 0.5,
+      opacity: 0,
+      y: 100,
+
+      transformOrigin: "center center",
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".myWorkSection",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 2,
+        pin: true,
+      },
+    });
+
+    // 등장
+    tl.to(".workSvg", {
+      scale: 1,
+      duration: 1,
+      ease: "power3.out",
+    })
+
+      .to(
+        ".workSvg",
+        {
+          opacity: 1,
+          duration: 2,
+          ease: "power2.out",
+        },
+        0,
+      )
+
+      // 이후 커지면서 사라짐
+      .to(".workSvg", {
+        scale: 30,
+        opacity: 0,
+        duration: 2,
+        ease: "none",
+      });
+    // 이벤트 페이지,배너 //
+    gsap.registerPlugin(ScrollTrigger);
+
+    /* =========================
+   카드 등장 애니메이션
+========================= */
+
+    gsap.utils.toArray(".diagCard").forEach((card) => {
+      gsap.from(card, {
+        y: 1000,
+        rotate: -3,
+        opacity: 0,
+
+        ease: "none",
+
+        scrollTrigger: {
+          trigger: card,
+
+          start: "top bottom",
+          end: "top center",
+
+          scrub: 8,
+        },
+      });
+    });
+
+    /* =========================
+   거미 배경 애니메이션
+========================= */
+
+    gsap.set(".spiderBg", {
+      y: 0,
+      opacity: 0,
+      scale: 1,
+      rotate: 0,
+    });
+
+    gsap
+      .timeline({
+        scrollTrigger: {
+          trigger: ".diagonalSection",
+
+          start: "top",
+          end: "bottom top",
+
+          scrub: 3,
+        },
+      })
+
+      .to(
+        ".spiderBg",
+        {
+          opacity: 1,
+
+          y: 350,
+
+          scale: 1.05,
+
+          rotate: 3,
+
+          filter: "blur(0px)",
+
+          ease: "none",
+        },
+        0,
+      );
+    // 카드 hover 패널//
+    const panel = document.querySelector(".detailPanel");
+    const panelImg = document.querySelector(".detailImg");
+    const panelNumber = document.querySelector(".detailNumber");
+
+    gsap.set(panel, {
+      opacity: 0,
+      x: 50,
+    });
+    gsap.fromTo(panelImg, { opacity: 0.5, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.4 });
+
+    function showPanel() {
+      gsap.to(panel, {
+        opacity: 1,
+        x: 0,
+        duration: 0.4,
+        ease: "power2.out",
+      });
+    }
+
+    function hidePanel() {
+      gsap.to(panel, {
+        opacity: 0,
+        x: 50,
+        duration: 0.3,
+      });
+    }
+
+    gsap.utils.toArray(".diagCard").forEach((card) => {
+      const img = card.querySelector("img");
+      const number = card.querySelector(".cardNumber");
+
+      gsap.to(card, { scale: 1.03, duration: 0.2 });
+      card.addEventListener("mouseleave", () => {
+        gsap.to(card, { scale: 1, duration: 0.2 });
+      });
+
+      card.addEventListener("mouseenter", () => {
+        panelImg.src = img.src;
+        panelNumber.textContent = number.textContent;
+
+        showPanel();
+      });
+
+      card.addEventListener("mouseleave", () => {
+        hidePanel();
+      });
+    });
+
+    // 섹션타이틀 문구 //
+    gsap.fromTo(
+      ".sectionTitle",
+      {
+        opacity: 0,
+        y: 120,
+      },
+      {
+        opacity: 1,
+        y: 0,
+
+        scrollTrigger: {
+          trigger: ".diagonalSection",
+
+          start: "top -380%",
+          end: "top -440%",
+
+          scrub: 2,
+        },
+      },
+    );
+    // -------섹션타이틀 문구 ------//
+    // 카드 hover 패널 ////
+
+    // 포트폴리오 팝업 //
+    /* =========================
+   VIEWER
+========================= */
+
+    const viewerModal = document.querySelector(".viewerModal");
+    const viewerImg = document.querySelector(".viewerImg");
+    const viewerClose = document.querySelector(".viewerClose");
+
+    /* 카드 클릭 */
+    gsap.utils.toArray(".diagCard").forEach((card) => {
+      const img = card.querySelector("img");
+
+      card.addEventListener("click", () => {
+        viewerModal.classList.add("active");
+
+        viewerImg.src = img.src;
+
+        // 배경 스크롤 막기
+        document.body.style.overflow = "hidden";
+      });
+    });
+
+    /* 닫기 */
+    function closeViewer() {
+      viewerModal.classList.remove("active");
+
+      document.body.style.overflow = "";
+    }
+
+    /* X 버튼 */
+    viewerClose.addEventListener("click", closeViewer);
+
+    /* 배경 클릭 */
+    viewerModal.addEventListener("click", (e) => {
+      if (e.target.classList.contains("viewerOverlay")) {
+        closeViewer();
+      }
+    });
+
+    /* ESC 닫기 */
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeViewer();
+      }
+    });
+    // 포트폴리오 Viewer
+
+    // LENIS
+    const lenis = new Lenis({
+      duration: 3,
+
+      smoothWheel: true,
+
+      wheelMultiplier: 0.8,
+
+      touchMultiplier: 1.5,
+
+      infinite: false,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    lenis.on("scroll", ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+  </script>
+</html>
