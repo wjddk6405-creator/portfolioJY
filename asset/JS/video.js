@@ -115,3 +115,79 @@ window.addEventListener("load", () => {
     "-=1.2",
   );
 });
+
+// 유튜브 링크
+const videoCards = document.querySelectorAll(".card");
+const playerViewSection = document.getElementById("playerViewSection");
+const modalIframe = document.getElementById("modalIframe");
+const playerBackBtn = document.getElementById("playerBackBtn");
+
+const playerTitle = document.getElementById("playerTitle");
+const playerDesc = document.getElementById("playerDesc");
+const playlistScroll = document.querySelector(".playlist-scroll");
+
+// 1. 우측 플레이리스트 목록을 자동으로 동적 생성하는 함수
+function buildPlaylist(currentId) {
+  playlistScroll.innerHTML = ""; // 기존 목록 비우기
+
+  videoCards.forEach((card, index) => {
+    const vId = card.getAttribute("data-video-id");
+    const title = card.getAttribute("data-title") || `PROJECT ${index + 1}`;
+    const videoSrc = card.querySelector("source").getAttribute("src");
+
+    const item = document.createElement("div");
+    item.classList.add("playlist-item");
+    if (vId === currentId) item.classList.add("active"); // 현재 재생 중인 영상 강조
+
+    item.innerHTML = `
+      <div class="playlist-thumb">
+        <video muted playsinline loop autoplay src="${videoSrc}"></video>
+      </div>
+      <div class="playlist-info">
+        <span class="playlist-item-title">${title}</span>
+      </div>
+    `;
+
+    // 플레이리스트 내부 아이템 클릭 시 영상&내용 다이렉트 전환
+    item.addEventListener("click", () => {
+      loadVideo(vId, title, card.getAttribute("data-desc"));
+    });
+
+    playlistScroll.appendChild(item);
+  });
+}
+
+// 2. 영상을 로드하고 플레이어 뷰에 텍스트를 매칭시키는 함수
+function loadVideo(id, title, desc) {
+  modalIframe.src = `https://www.youtube.com/embed/${id}?autoplay=1&rel=0&origin=${window.location.origin}`;
+  playerTitle.textContent = title;
+  playerDesc.textContent = desc || "프로젝트 설명이 없습니다.";
+  buildPlaylist(id); // 리스트 갱신
+}
+
+// 3. 메인 가로 트랙 카드 클릭 시 -> 전체 화면 전환 처리
+videoCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    const videoId = card.getAttribute("data-video-id");
+    const title = card.getAttribute("data-title");
+    const desc = card.getAttribute("data-desc");
+
+    if (videoId) {
+      loadVideo(videoId, title, desc);
+      // 부드럽게 화면을 플레이어 뷰로 전환 (.view-active 추가)
+      playerViewSection.classList.add("view-active");
+      // 화면이 전환될 때 스크롤이 움직이지 않도록 body 스크롤 임시 고정
+      document.body.style.overflow = "hidden";
+    }
+  });
+});
+
+// 4. BACK 버튼을 눌러서 다시 원래 가로 트랙 화면으로 돌아가기
+if (playerBackBtn) {
+  playerBackBtn.addEventListener("click", () => {
+    playerViewSection.classList.remove("view-active"); // 플레이어 뷰 숨기기
+    modalIframe.src = ""; // 유튜브 비디오 중단 및 소리 끄기
+    document.body.style.overflow = ""; // body 스크롤 해제
+  });
+}
+// ---유튜브 링크

@@ -82,21 +82,12 @@ gsap
     3.5,
   );
 
-// 카드 hover 패널//
+// 카드 hover 패널
 const panel = document.querySelector(".detailPanel");
 const panelImg = document.querySelector(".detailImg");
 const panelNumber = document.querySelector(".detailNumber");
 
 let allowHover = false;
-
-// hover 허용 조건
-window.addEventListener("scroll", () => {
-  const firstCard = document.querySelector(".diagCard");
-  if (!firstCard) return;
-
-  const rect = firstCard.getBoundingClientRect();
-  allowHover = rect.top < window.innerHeight * 0.6;
-});
 
 // panel 초기 상태
 gsap.set(panel, {
@@ -105,6 +96,9 @@ gsap.set(panel, {
 });
 
 function showPanel() {
+  // 기존에 돌고 있던 패널 애니메이션을 완전히 죽이고 새로 실행 (트윈 꼬임 방지)
+  gsap.killTweensOf(panel);
+
   gsap.to(panel, {
     opacity: 1,
     x: 0,
@@ -114,14 +108,32 @@ function showPanel() {
 }
 
 function hidePanel() {
+  // 기존 애니메이션을 완전히 죽이고 숨기기 실행
+  gsap.killTweensOf(panel);
+
   gsap.to(panel, {
     opacity: 0,
     x: 50,
     duration: 0.3,
+    ease: "power2.inOut",
   });
 }
 
-// 카드 hover
+// hover 허용 조건 및 스크롤 감시 안전장치
+window.addEventListener("scroll", () => {
+  const firstCard = document.querySelector(".diagCard");
+  if (!firstCard) return;
+
+  const rect = firstCard.getBoundingClientRect();
+  allowHover = rect.top < window.innerHeight * 0.6;
+
+  // ★ 안전장치 1: 스크롤이 범위를 벗어나 호버 비허용 구역으로 가면 패널 강제 삭제
+  if (!allowHover) {
+    hidePanel();
+  }
+});
+
+// 카드 hover 이벤트 바인딩
 gsap.utils.toArray(".diagCard").forEach((card) => {
   const img = card.querySelector("img");
   const number = card.querySelector(".cardNumber");
@@ -129,7 +141,10 @@ gsap.utils.toArray(".diagCard").forEach((card) => {
   card.addEventListener("mouseenter", () => {
     if (!allowHover) return;
 
-    // 카드 z-index 올리기 (중요)
+    // ★ 안전장치 2: 다른 카드에 진입할 때 혹시 남아있을지 모를 다른 카드의 zIndex 리셋
+    gsap.utils.toArray(".diagCard").forEach((c) => gsap.set(c, { zIndex: 1 }));
+
+    // 현재 카드 z-index 올리기
     gsap.set(card, { zIndex: 999 });
 
     panelImg.src = img.src;
@@ -140,9 +155,13 @@ gsap.utils.toArray(".diagCard").forEach((card) => {
 
   card.addEventListener("mouseleave", () => {
     gsap.set(card, { zIndex: 1 });
-
     hidePanel();
   });
+});
+
+// ★ 안전장치 3: 마우스가 윈도우(브라우저 화면) 밖으로 튕겨 나갔을 때도 확실하게 패널 숨기기
+document.addEventListener("mouseleave", () => {
+  hidePanel();
 });
 
 // 섹션타이틀 문구 //
