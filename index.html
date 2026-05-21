@@ -117,24 +117,56 @@
               <img src="asset/img/banner2.png" alt="" />
             </div>
             <div class="cardNumber">01</div>
+            <div class="cardDesc">
+              POP-UP STORE <br />
+              배너 디자인
+            </div>
+            <div class="cardAction">
+              <span>OPEN FULL VIEW</span>
+              <span class="arrow">↗</span>
+            </div>
           </div>
           <div class="diagCard card2">
             <div class="cardMedia">
               <img src="asset/img/banner1.png" alt="" />
             </div>
             <div class="cardNumber">02</div>
+            <div class="cardDesc">
+              BLACK FRIDAY <br />
+              이벤트 배너
+            </div>
+            <div class="cardAction">
+              <span>OPEN FULL VIEW</span>
+              <span class="arrow">↗</span>
+            </div>
           </div>
           <div class="diagCard card3">
             <div class="cardMedia">
               <img src="asset/img/banner3.png" alt="" />
             </div>
             <div class="cardNumber">03</div>
+            <div class="cardDesc">
+              BRAND MOOD<br />
+              프로모션 배너
+            </div>
+            <div class="cardAction">
+              <span>OPEN FULL VIEW</span>
+              <span class="arrow">↗</span>
+            </div>
           </div>
           <div class="diagCard card4">
             <div class="cardMedia">
               <img src="asset/img/eventpage.png" alt="" />
             </div>
             <div class="cardNumber">04</div>
+            <div class="cardDesc">
+              UI/UX Design <br />
+              이벤트 페이지
+            </div>
+            <div class="cardAction">
+              <span>OPEN FULL VIEW</span>
+              <span class="arrow">↗</span>
+            </div>
           </div>
         </section>
         <h2 class="sectionTitle">Event&<br />Banner Design</h2>
@@ -159,6 +191,73 @@
           <button class="viewerClose">✕</button>
         </div>
       </div>
+      <!-- ------이벤트 페이지 , 배너 섹션 -->
+
+      <!-- 비디오 섹션 -->
+      <div class="videoSpacer"></div>
+
+      <section class="main-container">
+        <div class="fixed-intro-text">
+          <h1>VIDEO TRACK</h1>
+        </div>
+        <div class="fixed-spiderweb-wrapper">
+          <img src="asset/img/web.png" alt="거미줄 디자인 요소" class="bypassing-spiderweb" />
+        </div>
+
+        <div class="fixed-spider-wrapper">
+          <img class="videoSpider" src="asset/img/videospider.png" alt="거미" />
+        </div>
+
+        <div class="horizontal-track">
+          <!-- [첫 번째 영상] 초기 1766x408px 사이즈 -->
+          <div class="card intro-card">
+            <video autoplay loop muted playsinline>
+              <source src="asset/media/motion.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          <!-- [이후 영상들] 처음부터 500x500px 사이즈 -->
+
+          <div class="card normal-card">
+            <video autoplay loop muted playsinline>
+              <source src="asset/media/ably.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card normal-card">
+            <video autoplay loop muted playsinline>
+              <source src="asset/media/intro.mp4" type="video/mp4" />
+            </video>
+          </div>
+          <div class="card normal-card">
+            <video autoplay loop muted playsinline>
+              <source src="asset/media/timple.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+        <!-- 유튜브 링크 -->
+
+        <div class="video-modal" id="videoModal">
+          <div class="modal-overlay"></div>
+          <div class="modal-content">
+            <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            <div class="iframe-container">
+              <iframe
+                id="modalIframe"
+                src=""
+                frameborder="0"
+                allow="autoplay; encrypted-media"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        </div>
+
+        <div class="fixed-scroll-text">
+          <span>SCROLL TO SEE PORTFOLIO &gt;</span>
+        </div>
+      </section>
+
+      <section class="footer-section"></section>
     </div>
   </body>
 
@@ -168,317 +267,14 @@
 
   <!-- lenis -->
   <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
-
-  <script>
-    const spiderWrap = document.querySelector(".spider-wrap");
-
-    const leftDoor = document.querySelector(".left-door");
-    const rightDoor = document.querySelector(".right-door");
-
-    const spider2 = document.querySelector(".spider2");
-
-    // ---------------- 스크롤 이벤트 ----------------
-    window.addEventListener("scroll", () => {
-      const scrollY = window.scrollY;
-      const winHeight = window.innerHeight;
-
-      // 문
-      const startThreshold = winHeight * 2;
-
-      let doorRatio = Math.min(1, scrollY / startThreshold);
-
-      const angle = doorRatio * 110;
-
-      leftDoor.style.transform = `rotateY(${-angle}deg)`;
-      rightDoor.style.transform = `rotateY(${angle}deg)`;
-
-      // 상단 거미
-      const spiderStart = startThreshold;
-
-      const moveRange = 1200;
-
-      let progress = (scrollY - spiderStart) / moveRange;
-
-      progress = Math.max(0, Math.min(progress, 1));
-
-      const moveY = -1000 + 1500 * progress;
-
-      spiderWrap.style.transform = `translateY(${moveY}px)`;
-
-      spiderWrap.style.opacity = progress;
-
-      // 하단 거미
-      if (scrollY > 4000) {
-        spider2.style.opacity = 1;
-
-        let move = (scrollY - 4000) * 0.3;
-
-        spider2.style.transform = `translate(-${move}px, -${move}px) rotate(-110deg)`;
-      } else {
-        spider2.style.opacity = 0;
-      }
-    });
-
-    // ---------------- GSAP ----------------
-
-    gsap.registerPlugin(ScrollTrigger);
-
-    gsap.set(".workSvg", {
-      scale: 0.5,
-      opacity: 0,
-      y: 100,
-
-      transformOrigin: "center center",
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".myWorkSection",
-        start: "top top",
-        end: "bottom bottom",
-        scrub: 2,
-        pin: true,
-      },
-    });
-
-    // 등장
-    tl.to(".workSvg", {
-      scale: 1,
-      duration: 1,
-      ease: "power3.out",
-    })
-
-      .to(
-        ".workSvg",
-        {
-          opacity: 1,
-          duration: 2,
-          ease: "power2.out",
-        },
-        0,
-      )
-
-      // 이후 커지면서 사라짐
-      .to(".workSvg", {
-        scale: 30,
-        opacity: 0,
-        duration: 2,
-        ease: "none",
-      });
-    // 이벤트 페이지,배너 //
-    gsap.registerPlugin(ScrollTrigger);
-
-    /* =========================
-   카드 등장 애니메이션
-========================= */
-
-    gsap.utils.toArray(".diagCard").forEach((card) => {
-      gsap.from(card, {
-        y: 1000,
-        rotate: -3,
-        opacity: 0,
-
-        ease: "none",
-
-        scrollTrigger: {
-          trigger: card,
-
-          start: "top bottom",
-          end: "top center",
-
-          scrub: 8,
-        },
-      });
-    });
-
-    /* =========================
-   거미 배경 애니메이션
-========================= */
-
-    gsap.set(".spiderBg", {
-      y: 0,
-      opacity: 0,
-      scale: 1,
-      rotate: 0,
-    });
-
-    gsap
-      .timeline({
-        scrollTrigger: {
-          trigger: ".diagonalSection",
-
-          start: "top",
-          end: "bottom top",
-
-          scrub: 3,
-        },
-      })
-
-      .to(
-        ".spiderBg",
-        {
-          opacity: 1,
-
-          y: 350,
-
-          scale: 1.05,
-
-          rotate: 3,
-
-          filter: "blur(0px)",
-
-          ease: "none",
-        },
-        0,
-      );
-    // 카드 hover 패널//
-    const panel = document.querySelector(".detailPanel");
-    const panelImg = document.querySelector(".detailImg");
-    const panelNumber = document.querySelector(".detailNumber");
-
-    gsap.set(panel, {
-      opacity: 0,
-      x: 50,
-    });
-    gsap.fromTo(panelImg, { opacity: 0.5, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.4 });
-
-    function showPanel() {
-      gsap.to(panel, {
-        opacity: 1,
-        x: 0,
-        duration: 0.4,
-        ease: "power2.out",
-      });
-    }
-
-    function hidePanel() {
-      gsap.to(panel, {
-        opacity: 0,
-        x: 50,
-        duration: 0.3,
-      });
-    }
-
-    gsap.utils.toArray(".diagCard").forEach((card) => {
-      const img = card.querySelector("img");
-      const number = card.querySelector(".cardNumber");
-
-      gsap.to(card, { scale: 1.03, duration: 0.2 });
-      card.addEventListener("mouseleave", () => {
-        gsap.to(card, { scale: 1, duration: 0.2 });
-      });
-
-      card.addEventListener("mouseenter", () => {
-        panelImg.src = img.src;
-        panelNumber.textContent = number.textContent;
-
-        showPanel();
-      });
-
-      card.addEventListener("mouseleave", () => {
-        hidePanel();
-      });
-    });
-
-    // 섹션타이틀 문구 //
-    gsap.fromTo(
-      ".sectionTitle",
-      {
-        opacity: 0,
-        y: 120,
-      },
-      {
-        opacity: 1,
-        y: 0,
-
-        scrollTrigger: {
-          trigger: ".diagonalSection",
-
-          start: "top -380%",
-          end: "top -440%",
-
-          scrub: 2,
-        },
-      },
-    );
-    // -------섹션타이틀 문구 ------//
-    // 카드 hover 패널 ////
-
-    // 포트폴리오 팝업 //
-    /* =========================
-   VIEWER
-========================= */
-
-    const viewerModal = document.querySelector(".viewerModal");
-    const viewerImg = document.querySelector(".viewerImg");
-    const viewerClose = document.querySelector(".viewerClose");
-
-    /* 카드 클릭 */
-    gsap.utils.toArray(".diagCard").forEach((card) => {
-      const img = card.querySelector("img");
-
-      card.addEventListener("click", () => {
-        viewerModal.classList.add("active");
-
-        viewerImg.src = img.src;
-
-        // 배경 스크롤 막기
-        document.body.style.overflow = "hidden";
-      });
-    });
-
-    /* 닫기 */
-    function closeViewer() {
-      viewerModal.classList.remove("active");
-
-      document.body.style.overflow = "";
-    }
-
-    /* X 버튼 */
-    viewerClose.addEventListener("click", closeViewer);
-
-    /* 배경 클릭 */
-    viewerModal.addEventListener("click", (e) => {
-      if (e.target.classList.contains("viewerOverlay")) {
-        closeViewer();
-      }
-    });
-
-    /* ESC 닫기 */
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        closeViewer();
-      }
-    });
-    // 포트폴리오 Viewer
-
-    // LENIS
-    const lenis = new Lenis({
-      duration: 3,
-
-      smoothWheel: true,
-
-      wheelMultiplier: 0.8,
-
-      touchMultiplier: 1.5,
-
-      infinite: false,
-    });
-
-    function raf(time) {
-      lenis.raf(time);
-
-      requestAnimationFrame(raf);
-    }
-
-    requestAnimationFrame(raf);
-
-    lenis.on("scroll", ScrollTrigger.update);
-
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
-
-    gsap.ticker.lagSmoothing(0);
-  </script>
+  <script src="asset/JS/lenis.js"></script>
+
+  <!-- js -->
+
+  <script src="asset/JS/main.js"></script>
+  <script src="asset/JS/Mywork.js"></script>
+  <script src="asset/JS/event.Js"></script>
+  <script src="asset/JS/video.js"></script>
+  <script src="asset/JS/web.js"></script>
 </html>
++
