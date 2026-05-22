@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="asset/css/reset.css" />
     <link rel="stylesheet" href="asset/css/style.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
+
+    <!-- 영역 별 css -->
+    <link rel="stylesheet" href="asset/css/nav.css" />
+    <link rel="stylesheet" href="asset/css/main.css" />
+    <link rel="stylesheet" href="asset/css/profile.css" />
+    <link rel="stylesheet" href="asset/css/mywork.css" />
+    <link rel="stylesheet" href="asset/css/event.css" />
+    <link rel="stylesheet" href="asset/css/video.css" />
+
     <title>JuYeon</title>
   </head>
   <body>
@@ -229,6 +238,7 @@
     <div class="videoSpacer"></div>
 
     <div id="videoSection" style="position: absolute; transform: translateY(-50px)"></div>
+
     <section class="main-container">
       <div class="fixed-intro-text">
         <h1>VIDEO TRACK</h1>
@@ -322,8 +332,47 @@
       </div>
     </section>
 
+    <!-- 웹 프로젝트 섹션 -->
     <div id="webSection" style="position: relative; top: 0"></div>
-    <section class="web_section"></section>
+    <div class="screen-container">
+      <div class="portfolio-frame">
+        <div class="section-header">
+          <h2>Web Archive</h2>
+        </div>
+
+        <section id="main-display" class="main-display">
+          <div class="mockup-group">
+            <div class="mockup desktop"><img id="main-img-desktop" src="" alt="Desktop" /></div>
+            <div class="mockup tablet"><img id="main-img-tablet" src="" alt="Tablet" /></div>
+            <div class="mockup mobile"><img id="main-img-mobile" src="" alt="Mobile" /></div>
+          </div>
+
+          <div class="project-info">
+            <h3 id="main-title" class="project-title">ART & Culture</h3>
+            <p id="main-desc" class="project-desc">-</p>
+            <div id="main-tags" class="project-tags"></div>
+
+            <div class="project-links">
+              <a id="link-web" href="#" target="_blank" class="btn btn-primary">Website ↗</a>
+
+              <a id="link-github" href="#" target="_blank" class="btn btn-secondary">Github</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="mid-gap-zone">
+        <span class="next-loot-text">NEXT LOOT ></span>
+      </div>
+
+      <section class="slider-section">
+        <div id="slider-container" class="slider-container"></div>
+      </section>
+      <img class="webSpider" src="asset/img/1f577-fe0f.gif" alt="거미" />
+    </div>
+
+    <!-- 웹 프로젝트 섹션 끝-->
+
     <div id="contactSection" style="position: relative; top: 0"></div>
     <section class="contact_section"></section>
   </body>
@@ -340,4 +389,5 @@
   <script src="asset/JS/event.Js"></script>
   <script src="asset/JS/video.js"></script>
   <script src="asset/JS/web.js"></script>
+  <script src="asset/JS/contact.js"></script>
 </html>

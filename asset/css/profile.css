@@ -1,0 +1,164 @@
+/* 프로필 타이틀 */
+.profile {
+  height: 985px;
+  margin-top: 400px;
+  padding-top: 450px;
+
+  position: relative;
+}
+
+.profile_title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 120px;
+}
+.title_left {
+  line-height: 55px;
+  margin-left: 100px;
+}
+.title_left > h1 {
+  color: #f6f6f6;
+  font-size: 96px;
+  font-weight: 450;
+  letter-spacing: 3%;
+}
+.title_left > h3 {
+  font-size: 24px;
+  color: #d5d5d5;
+  font-weight: 400;
+  letter-spacing: -2%;
+  margin-left: 175px;
+}
+.title_right {
+  margin-top: -130px;
+  display: flex;
+  align-items: center;
+  margin-right: 130px;
+}
+.title_right > h3 {
+  font-size: 24px;
+  color: #555353;
+  font-weight: 500;
+  margin-top: 60px;
+}
+.title_right img {
+  margin-top: 40px;
+}
+/* 프로필 구조 */
+.profile_box {
+  display: flex;
+  justify-content: space-between;
+}
+.box_left {
+  display: flex;
+  gap: 50px;
+}
+.box_left .profileimg {
+  margin-top: 100px;
+}
+.profile_info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+.profileimgBox p {
+  color: #d5d5d5;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+.name_box {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+.birth {
+  margin-bottom: 30px;
+}
+.name_box h3 {
+  margin-right: 10px;
+
+  color: #8f8f8f;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.name_box p {
+  color: #d0d0d0;
+  font-size: 28px;
+}
+.info_box {
+  color: #fff;
+  font-size: 24px;
+  gap: 14px;
+  line-height: 45px;
+  margin-bottom: 30px;
+}
+.info_box h3 {
+  color: #8f8f8f;
+
+  font-size: 24px;
+  font-weight: 700;
+
+  margin-bottom: 4px;
+}
+
+.info_row {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+}
+
+.info_row p,
+.info_box > p {
+  color: #d5d5d5;
+
+  font-size: 24px;
+  font-weight: 400;
+
+  line-height: 1.8;
+}
+.profile_info .date {
+  color: #fff;
+  margin-right: 8px;
+}
+
+.box_right {
+  margin-top: 100px;
+  margin-right: 125px;
+}
+.box_right h3 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #8f8f8f;
+
+  margin-left: 162px;
+  margin-bottom: 30px;
+}
+.box_right img {
+  margin-right: 36px;
+}
+/* ----프로필--- */
+.spider2 {
+  position: fixed;
+
+  bottom: 300px;
+  right: -100px;
+
+  width: 140px;
+
+  z-index: 9999;
+
+  opacity: 0;
+
+  pointer-events: none;
+
+  transition:
+    transform 0.05s linear,
+    opacity 0.2s ease;
+}

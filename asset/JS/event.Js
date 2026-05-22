@@ -178,7 +178,7 @@ gsap
       end: "bottom top",
       ease: "power2.out",
 
-      scrub: 2,
+      scrub: 1,
     },
   })
   .to(

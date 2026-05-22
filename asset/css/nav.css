@@ -1,0 +1,219 @@
+/* Nav==========================================================================
+   우측 상단 햄버거 메뉴 & 전체화면 레이어 스타일
+   ========================================================================== */
+
+/* 1. 고정 메뉴 버튼 (우측 상단 픽스) */
+.menu-open-btn {
+  opacity: 0; /* 처음에 메인에서는 안 보이게 세팅 */
+  visibility: hidden; /* 클릭 차단 숨김 처리 */
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  width: 46px;
+  height: 36px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 9990; /* 닫기 버튼 오버레이 영역(10010)보다는 아래 */
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+}
+
+/* 햄버거 세 줄 선 스타일 */
+.menu-open-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+/* 2. 전체 화면 메뉴 오버레이 창 */
+.full-menu-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000;
+  z-index: 10010; /* 모든 요소를 통틀어 최상단 설정 */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 0 10%;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+}
+
+/* 활성화 상태 클래스 */
+.full-menu-layer.menu-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 닫기 (X) 버튼 */
+.menu-close-btn {
+  position: absolute;
+  top: 70px;
+  right: 45px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 80px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.menu-close-btn:hover {
+  transform: scale(1.1);
+}
+
+/* 좌측 안내 문구 서식 */
+.menu-left-info {
+  color: #fff;
+  max-width: 400px;
+}
+.menu-left-info h2 {
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+.menu-left-info p {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.8;
+}
+
+/* 우측 거대 메뉴 내비게이션 */
+.menu-links-nav {
+  display: flex;
+  flex-direction: column;
+}
+.menu-links-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-links-nav > ul > li {
+  margin-bottom: 25px;
+}
+
+/* 대메뉴 글자 감성 서식 */
+.menu-links-nav .menu-link-item {
+  color: #888;
+  font-size: 4.5rem;
+  font-weight: 900;
+  text-decoration: none;
+  letter-spacing: 3px;
+  line-height: 1;
+  display: inline-block;
+  transition:
+    color 0.3s ease,
+    transform 0.3s ease;
+}
+.menu-links-nav .menu-link-item:hover {
+  color: #fff;
+  transform: translateX(15px);
+}
+
+/* ==========================================================================
+   포트폴리오 서브 메뉴 아코디언 드롭다운 스타일
+   ========================================================================== */
+
+.portfolio-toggle-btn {
+  cursor: pointer;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+/* 서브 메뉴를 부드럽게 감싸는 상자 */
+.sub-menu-wrapper {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* 활성화 시 아코디언 오픈 */
+.portfolio-menu-container.active .sub-menu-wrapper {
+  height: 160px;
+}
+
+.sub-menu-list {
+  list-style: none;
+  padding-left: 30px !important;
+  padding-top: 15px;
+  padding-bottom: 10px;
+  margin: 0;
+}
+.sub-menu-list li {
+  margin-bottom: 15px;
+}
+
+/* 소분류 메뉴 전용 독립 스타일 */
+.sub-menu-list .menu-link-item.sub-item {
+  font-size: 2.2rem !important;
+  color: #666666 !important;
+  font-weight: 800 !important;
+  text-transform: uppercase;
+  display: inline-block;
+  transition:
+    color 0.3s ease,
+    padding-left 0.3s ease;
+}
+.sub-menu-list .menu-link-item.sub-item:hover {
+  color: #ffffff !important;
+  padding-left: 10px; /* 안전하게 padding으로 모션 처리 */
+}
+
+/* ==========================================================================
+   [레이어 제어] 메인/프로필 뒤판 강화 및 거미 완벽 차단막
+   ========================================================================== */
+
+/* 1. 메인과 프로필 섹션을 최상위 레이어로 완전히 올려서 아래 잔상을 덮어버림 */
+#main,
+#profileSection,
+main {
+  position: relative !important;
+  background-color: #000000 !important;
+  z-index: 50 !important; /* 메뉴 오픈 버튼(9990)보다는 아래, 거미보단 위 */
+}
+
+/* 2. 포트폴리오 구역 본체 레이어 순위 지정 */
+#eventSection,
+#videoSection,
+#webSection {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 3. 거미 이미지들의 기본 레이어 순위를 가림막 밑으로 강등 (원래 구역에선 아주 잘 나옴) */
+.spiderBg,
+.spider-wrap,
+.spider,
+.spider2,
+.eventspider,
+img[src*="spider"] {
+  position: relative;
+  z-index: -5 !important;
+}
+
+/* 4. 햄버거 메뉴판이 열려 있을 때 겹쳐서 움직이는 거미 잔상 투명화 방어선 */
+.full-menu-layer.menu-active ~ #eventSection .spiderBg,
+.full-menu-layer.menu-active ~ .spider-wrap,
+.full-menu-layer.menu-active ~ .spider,
+.full-menu-layer.menu-active ~ .spider2,
+.full-menu-layer.menu-active ~ img[src*="spider"] {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Nav 끝 */

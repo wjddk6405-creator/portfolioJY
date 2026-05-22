@@ -1,0 +1,366 @@
+/* 비디오 섹션 */
+/* 전체 스크롤 길이 */
+.videoSpacer {
+  height: 600vh;
+}
+
+.main-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.videoSpider {
+  position: absolute;
+  left: 10px;
+  bottom: 900px;
+  width: 150px;
+  transform: rotate(-160deg);
+}
+/*  scroll to see portflio */
+.fixed-intro-text {
+  position: absolute;
+  top: 60px; /* 상단 여백 */
+  left: 2vw; /* 좌측 여백 (가로 트랙 시작점과 정렬 맞춤) */
+  z-index: 100; /* 영상들보다 항상 위에 있도록 배치 */
+  opacity: 0; /* JS로 첫 로드 시 페이드인 */
+  visibility: hidden;
+}
+
+.fixed-intro-text > h1 {
+  font-size: 102px;
+  color: #fff;
+  letter-spacing: -0.05em;
+  font-weight: 600;
+}
+/* ★ 화면 오른쪽 하단 완전 고정 및 반짝임 스타일 */
+.fixed-scroll-text {
+  position: absolute;
+  bottom: 50px; /* 브라우저 화면 하단 여백 */
+  right: 5vw; /* 브라우저 화면 우측 여백 */
+  z-index: 100; /* 영상 트랙이 지나가도 항상 그 위에 떠 있도록 높은 z-index */
+  opacity: 0; /* 스크롤 전에는 숨김 */
+  visibility: hidden;
+}
+
+.fixed-scroll-text span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #fff;
+
+  /* 반짝이는 애니메이션 */
+  animation: blink 2s infinite ease-in-out;
+}
+
+/*  글자 반짝임 키프레임 */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0.3;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    opacity: 1;
+    text-shadow:
+      0 0 8px rgba(255, 255, 255, 0.6),
+      0 0 15px rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* 거미줄 */
+/* ==========================================================================
+   거미줄 (트랙 뒤 배치)
+   ========================================================================== */
+.fixed-spiderweb-wrapper {
+  position: absolute;
+  bottom: -100px; /* 기존 위치 유지 */
+  left: -40px; /* 기존 위치 유지 */
+  transform: rotate(-110deg); /* 기존 회전 유지 */
+
+  z-index: -10; /* ★ 트랙(영상)보다 뒤로 가도록 낮은 값 설정 */
+  pointer-events: none;
+}
+
+.fixed-spiderweb-wrapper img.bypassing-spiderweb {
+  display: block;
+  width: 100%;
+  height: 500px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.4));
+}
+
+/* ==========================================================================
+   거미 (트랙 위 고정 배치)
+   ========================================================================== */
+/* 거미를 화면 좌하단에 고정하는 독립된 박스 */
+.fixed-spider-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 300px; /* 거미가 활동할 가상 영역 */
+  height: 900px;
+
+  z-index: 999; /* ★ 트랙(영상) 및 그림자보다 무조건 위에 오도록 높은 값 설정 */
+  pointer-events: none;
+}
+
+/* 거미 이미지 자체 스타일 */
+.fixed-spider-wrapper .videoSpider {
+  position: absolute;
+
+  /* 부모인 spider-wrapper가 회전하지 않은 순수한 상태이므로 
+     화면 왼쪽 구석 기준으로 직관적으로 좌표를 잡으시면 됩니다! */
+  top: 650px; /* ★ 이 값을 조절해서 거미의 '상하 위치'를 마음에 들게 맞춰보세요! */
+  left: -50px; /* 좌측 위치 (기존 마음에 들던 위치 유지) */
+  /* 부모의 회전 간섭이 없으므로, 거미 이미지 본연의 각도만 조절해주면 됩니다.
+     대각선 아래를 바라보게 하려면 -50deg ~ -70deg 사이로 맞춰보세요. */
+  transform: rotate(-20deg);
+
+  width: 100%; /* PNG 거미 크기 */
+  height: auto;
+}
+
+/* 가로 배열 트랙 */
+.horizontal-track {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  padding-left: 5vw; /* 타이틀 좌측 정렬선과 일치시킴 */
+  padding-top: 120px; /* 타이틀 공간 확보를 위해 전체 트랙을 살짝 아래로 내려줌 */
+  padding-right: 0;
+}
+
+.card {
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+
+  /* 카드 좌우에 똑같이 30px씩 마진을 주어 카드 사이 간격을 정확히 60px로 통일합니다 */
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 첫 번째 인트로 카드 초기 상태 (1766x408) */
+.intro-card {
+  width: 1766px;
+  height: 408px;
+
+  /* ★ 중요: 처음에 완전히 숨김 */
+  opacity: 0;
+  visibility: hidden;
+
+  border-radius: 30px;
+  /* 영상이 자연스럽게 나타나도록 페이징 transition 추가 (선택사항) */
+  transition:
+    visibility 0s,
+    opacity 0.5s linear;
+}
+
+/* 일반 카드 초기 상태 (700x600) */
+.normal-card {
+  width: 700px;
+  height: 600px;
+  border-radius: 30px;
+}
+
+.card-desc {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+/* 유튜브 링크 */
+.player-view-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #000000; /* 참고 사이트처럼 깊은 블랙 */
+  z-index: 10000; /* 가로 트랙과 거미를 완전히 덮도록 최상단 배치 */
+
+  /* 부드러운 화면 전환(스르륵 나타나기) 효과 */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px); /* 살짝 아래에서 위로 올라오는 느낌 */
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* ★ 카드를 클릭하면 이 클래스가 붙으면서 화면이 플레이어 뷰로 전환됩니다 */
+.player-view-section.view-active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* 3단 분할 그리드 컨테이너 (정확히 화면을 3등분) */
+.player-layout-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 320px 1fr 300px; /* 참고 사이트 비율 감성 적용 */
+  padding-top: 60px; /* 상단 백 버튼이 들어갈 공간 확보 */
+  box-sizing: border-box;
+}
+
+/* 돌아가기 (BACK) 버튼 스타일 */
+.player-back-btn {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  background: none;
+  border: none;
+  color: #888;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: color 0.2s;
+  z-index: 10002;
+}
+.player-back-btn:hover {
+  color: #fff;
+}
+
+/* [좌측] 설명 영역 */
+.player-sidebar-left {
+  background: #050505;
+  padding: 40px 25px;
+  border-right: 1px solid #111;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: #fff;
+  overflow-y: auto;
+}
+.player-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.player-desc {
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.7;
+}
+
+/* [중앙] 메인 유튜브 비디오 영역 */
+.player-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  padding: 40px;
+}
+.player-main .iframe-container {
+  width: 100%;
+  max-width: 1100px;
+  padding-top: 56.25%; /* 16:9 비율 유지 */
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+}
+.player-main .iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* [우측] 플레이리스트 영역 */
+.player-sidebar-right {
+  background: #050505;
+  border-left: 1px solid #111;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  overflow: hidden;
+}
+.player-sidebar-right h4 {
+  padding: 20px;
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  border-bottom: 1px solid #111;
+  margin: 0;
+  color: #444;
+}
+.playlist-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 플레이리스트 내부 아이템 스타일 */
+.playlist-item {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 8px;
+  background: #0c0c0c;
+  transition:
+    background 0.2s,
+    transform 0.2s;
+}
+.playlist-item:hover,
+.playlist-item.active {
+  background: #161616;
+}
+.playlist-thumb {
+  width: 110px;
+  height: 62px;
+  background: #000;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.playlist-thumb video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.playlist-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.playlist-item-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #aaa;
+}
+.playlist-item.active .playlist-item-title {
+  color: #fff;
+}
+/* ----유튜브 링크--- */
+
+.footer-section > h2 {
+  color: #fff;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.footer-section {
+  height: 100vh;
+}
