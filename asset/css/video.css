@@ -9,6 +9,8 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+
+  cursor: pointer;
 }
 
 .videoSpider {
@@ -127,6 +129,7 @@
 .horizontal-track {
   display: flex;
   align-items: center;
+
   height: 100vh;
   padding-left: 5vw; /* 타이틀 좌측 정렬선과 일치시킴 */
   padding-top: 120px; /* 타이틀 공간 확보를 위해 전체 트랙을 살짝 아래로 내려줌 */
@@ -154,8 +157,8 @@
 .intro-card {
   width: 1766px;
   height: 408px;
+  margin-left: -90px;
 
-  /* ★ 중요: 처음에 완전히 숨김 */
   opacity: 0;
   visibility: hidden;
 

@@ -162,3 +162,22 @@
     transform 0.05s linear,
     opacity 0.2s ease;
 }
+
+/* ==========================================================================
+   [프로필 인터랙션] 초기 숨김 상태 설정
+   ========================================================================== */
+/* 타이틀 구역 */
+.title_left > h1,
+.title_left > h3,
+.title_right {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* 콘텐츠 구역 (사진, 인포박스, 스킬박스) */
+.box_left .profileimgBox,
+.profile_info > div,
+.box_right {
+  opacity: 0;
+  transform: translateY(40px);
+}

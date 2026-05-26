@@ -210,6 +210,7 @@ gsap.utils.toArray(".diagCard").forEach((card) => {
 
   card.addEventListener("click", () => {
     viewerModal.classList.add("active");
+    document.body.classList.add("viewer-opened"); // 🔥 [추가] 뷰어 열릴 때 body에 클래스 추가 (메뉴 숨김용)
 
     viewerImg.src = img.src;
 
@@ -221,6 +222,7 @@ gsap.utils.toArray(".diagCard").forEach((card) => {
 /* 닫기 */
 function closeViewer() {
   viewerModal.classList.remove("active");
+  document.body.classList.remove("viewer-opened"); // 🔥 [추가] 뷰어 닫힐 때 body에서 클래스 제거 (메뉴 복구용)
 
   document.body.style.overflow = "";
 }
@@ -228,9 +230,10 @@ function closeViewer() {
 /* X 버튼 */
 viewerClose.addEventListener("click", closeViewer);
 
-/* 배경 클릭 */
+/* 배경 클릭 (이미지 영역 외에 어디를 누르든 닫히게 설정) */
 viewerModal.addEventListener("click", (e) => {
-  if (e.target.classList.contains("viewerOverlay")) {
+  // 클릭된 요소가 '이미지(viewerImg)'가 아니고, '닫기 버튼(viewerClose)'도 아니라면 닫기 실행
+  if (e.target !== viewerImg && e.target !== viewerClose) {
     closeViewer();
   }
 });
@@ -241,4 +244,27 @@ window.addEventListener("keydown", (e) => {
     closeViewer();
   }
 });
+
+// viewer 활성화 시 메뉴 버튼 숨김//
+/* ==========================================================================
+   스크롤 시 햄버거 메뉴 버튼 보이게/숨기게 제어 (안전장치 추가)
+   ========================================================================== */
+window.addEventListener("scroll", () => {
+  const menuBtn = document.querySelector(".menu-open-btn");
+  if (!menuBtn) return;
+
+  // 뷰어가 열려있을 때는 이 스크롤 로직이 방해하지 않도록 차단
+  if (document.body.classList.contains("viewer-opened")) return;
+
+  // 예: 스크롤이 200px 이상 내려가면 메뉴 버튼 보이게 하기
+  if (window.scrollY > 200) {
+    menuBtn.style.opacity = "1";
+    menuBtn.style.visibility = "visible";
+  } else {
+    // 다시 맨 위로 올라가면 메인 화면 컨셉에 맞춰 숨김
+    menuBtn.style.opacity = "0";
+    menuBtn.style.visibility = "hidden";
+  }
+});
+/* viewer 활성화 시 메뉴 버튼 숨김 */
 // 포트폴리오 Viewer

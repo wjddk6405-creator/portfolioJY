@@ -31,7 +31,7 @@
 
 .workSvg {
   width: 70vw;
-
+  pointer-events: none;
   overflow: visible;
 }
 

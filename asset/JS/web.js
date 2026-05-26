@@ -1,18 +1,30 @@
-// 본인의 img 폴더에 저장된 파일명에 맞춰 매칭하세요!
 const PROJECTS = [
   {
     id: 1,
-    title: "Delta",
-    desc: "Delta 항공 사이트의 클론 코딩 작업물입니다.",
-    tags: ["#반응형", "슬라이드"],
+    title: "Mountain",
+    desc: "리액트를 활용한 MOUNTAINS 사이트입니다.",
+    tags: ["#반응형", "슬라이드", "자바스크립트", "리액트"],
     links: {
-      web: "https://wjddk6405-creator.github.io/delta/",
+      web: "https://mountain-steel.vercel.app/",
       github: "https://github.com/wjddk6405-creator/delta",
     },
     images: {
-      desktop: "asset/img/deltapc.png",
-      tablet: "asset/img/deltapad.png",
-      mobile: "asset/img/deltamobile.png",
+      desktop: "asset/img/mountain.png",
+      tablet: "asset/img/mountainpad.png",
+      mobile: "asset/img/mountainmobile.png",
+    },
+  },
+  {
+    id: 2,
+    title: "Dessert",
+    desc: "리액트를 활용한 DESSERT 사이트입니다.",
+    tags: ["슬라이드", "자바스크립트", "리액트"],
+    links: {
+      web: "https://dessertreact-last.vercel.app/",
+      github: "https://github.com/wjddk6405-creator/delta",
+    },
+    images: {
+      desktop: "asset/img/dessertpc.png",
     },
   },
   {
@@ -43,6 +55,36 @@ const PROJECTS = [
       desktop: "asset/img/nfnlpc.png",
       tablet: "asset/img/nfnlpad.png",
       mobile: "asset/img/nfnlmobile.png",
+    },
+  },
+  {
+    id: 4,
+    title: "Delta",
+    desc: "Delta 항공 사이트의 클론 코딩 작업물입니다.",
+    tags: ["#반응형", "슬라이드"],
+    links: {
+      web: "https://wjddk6405-creator.github.io/delta/",
+      github: "https://github.com/wjddk6405-creator/delta",
+    },
+    images: {
+      desktop: "asset/img/deltapc.png",
+      tablet: "asset/img/deltapad.png",
+      mobile: "asset/img/deltamobile.png",
+    },
+  },
+  {
+    id: 5,
+    title: "Delta",
+    desc: "Delta 항공 사이트의 클론 코딩 작업물입니다.",
+    tags: ["#반응형", "슬라이드"],
+    links: {
+      web: "https://wjddk6405-creator.github.io/delta/",
+      github: "https://github.com/wjddk6405-creator/delta",
+    },
+    images: {
+      desktop: "asset/img/deltapc.png",
+      tablet: "asset/img/deltapad.png",
+      mobile: "asset/img/deltamobile.png",
     },
   },
 ];
@@ -149,18 +191,22 @@ function watchWebSection() {
 
       // 🏃‍♂️ 박스가 올라오는 박자에 100% 동기화하여 거미를 대각선 아래로 기어가게 만듬
       gsap.to(spider, {
-        x: progress * -350, // ◀ 왼쪽으로 기어갈 거리
-        y: progress * 620, // ◀ 아래로 기어내려가서 박스 뒤로 숨을 거리
-        rotation: -140 + progress * 40, // 몸 각도 회전
-        duration: 0.1, // 랙 없이 쫀득하게 따라붙도록 세팅
+        x: progress * -350,
+        y: progress * 620,
+        rotation: -140 + progress * 40,
+        duration: 0.1,
         overwrite: "auto",
       });
     } else if (boxTop > startPoint) {
       // 박스가 아직 저 아래에서 안 올라왔을 때: 원래 자리 대기
       gsap.set(spider, { x: 0, y: 0, rotation: -140 });
     } else if (boxTop < endPoint) {
-      // 박스가 완전히 화면을 덮고 올라갔을 때: 완전히 숨은 상태 고정
-      gsap.set(spider, { x: -350, y: 320, rotation: -100 });
+      // ✅ 박스가 화면 꼭대기를 지나쳐 올라가도 마지막 위치에 고정
+      gsap.set(spider, {
+        x: -350,
+        y: 620,
+        rotation: -100,
+      });
     }
 
     // 🔄 가로 스크롤 플러그인이 화면을 움직일 때마다 이 함수를 무한 반복 감시 실행

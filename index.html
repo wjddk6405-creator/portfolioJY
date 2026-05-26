@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="asset/css/style.css" />
     <link rel="stylesheet" href="asset/css/responsive.css" />
 
+    <!-- fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+
     <!-- 영역 별 css -->
     <link rel="stylesheet" href="asset/css/nav.css" />
     <link rel="stylesheet" href="asset/css/main.css" />
@@ -15,6 +21,8 @@
     <link rel="stylesheet" href="asset/css/mywork.css" />
     <link rel="stylesheet" href="asset/css/event.css" />
     <link rel="stylesheet" href="asset/css/video.css" />
+    <link rel="stylesheet" href="asset/css/web.css" />
+    <link rel="stylesheet" href="asset/css/contact.css" />
 
     <title>JuYeon</title>
   </head>
@@ -333,8 +341,8 @@
     </section>
 
     <!-- 웹 프로젝트 섹션 -->
-    <div id="webSection" style="position: relative; top: 0"></div>
-    <div class="screen-container">
+
+    <div id="webSection" class="screen-container">
       <div class="portfolio-frame">
         <div class="section-header">
           <h2>Web Archive</h2>
@@ -373,18 +381,54 @@
 
     <!-- 웹 프로젝트 섹션 끝-->
 
-    <div id="contactSection" style="position: relative; top: 0"></div>
-    <section class="contact_section"></section>
+    <section id="contactSection" class="contact_section">
+      <h1>CONTACT</h1>
+      <button class="contact_btn"><p>MESSAGE</p></button>
+
+      <div class="contact_info_wrap">
+        <div class="contact_grid_container">
+          <div class="grid_left_text">
+            <h2>LET’S MAKE IT REAL</h2>
+          </div>
+
+          <div class="grid_right_icons">
+            <a href="#" class="grid_icon_item" id="kakaoBtn">
+              <i class="fa-solid fa-comment"></i>
+            </a>
+
+            <a href="tel:01054284659" class="grid_icon_item">
+              <i class="fa-solid fa-phone"></i>
+            </a>
+
+            <a href="mailto:wndus4659@naver.com" class="grid_icon_item">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+
+            <a href="https://github.com/wjddk6405-creator" target="_blank" class="grid_icon_item">
+              <i class="fa-brands fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="qr_modal_overlay" id="qrModal">
+      <div class="qr_modal_content">
+        <button class="qr_modal_close" id="closeModal">&times;</button>
+        <img src="asset/img/qr.png" alt="KakaoTalk QR Code" />
+      </div>
+    </div>
   </body>
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-  <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/bundled/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="asset/JS/lenis.js"></script>
 
   <script src="asset/JS/nav.js"></script>
   <script src="asset/JS/main.js"></script>
+  <script src="asset/JS/profile.js"></script>
   <script src="asset/JS/Mywork.js"></script>
   <script src="asset/JS/event.Js"></script>
   <script src="asset/JS/video.js"></script>
