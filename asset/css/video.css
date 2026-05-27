@@ -189,7 +189,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   background: #000000; /* 참고 사이트처럼 깊은 블랙 */
   z-index: 10000; /* 가로 트랙과 거미를 완전히 덮도록 최상단 배치 */

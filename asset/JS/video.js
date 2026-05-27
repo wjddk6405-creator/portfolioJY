@@ -172,9 +172,15 @@ videoCards.forEach((card) => {
 // 4. BACK 버튼을 눌러서 다시 원래 가로 트랙 화면으로 돌아가기
 if (playerBackBtn) {
   playerBackBtn.addEventListener("click", () => {
-    playerViewSection.classList.remove("view-active"); // 플레이어 뷰 숨기기
-    modalIframe.src = ""; // 유튜브 비디오 중단 및 소리 끄기
-    document.body.style.overflow = ""; // body 스크롤 해제
+    playerViewSection.classList.remove("view-active");
+
+    modalIframe.src = "";
+
+    document.body.style.overflow = "";
+
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 300);
   });
 }
 // ---유튜브 링크
