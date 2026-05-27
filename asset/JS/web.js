@@ -6,7 +6,7 @@ const PROJECTS = [
     tags: ["#반응형", "슬라이드", "자바스크립트", "리액트"],
     links: {
       web: "https://mountain-steel.vercel.app/",
-      github: "https://github.com/wjddk6405-creator/delta",
+      github: "https://github.com/wjddk6405-creator/mountain",
     },
     images: {
       desktop: "asset/img/mountain.png",
@@ -14,23 +14,26 @@ const PROJECTS = [
       mobile: "asset/img/mountainmobile.png",
     },
   },
+
   {
     id: 2,
-    title: "Dessert",
-    desc: "리액트를 활용한 DESSERT 사이트입니다.",
-    tags: ["슬라이드", "자바스크립트", "리액트"],
+    title: "NFNL",
+    desc: "맛집 킬러라는 컨셉으로 제작된 가상의 맛집 커뮤니티 웹 사이트입니다.",
+    tags: ["#반응형", "#자바스크립트", "#GSAP", "#팀프로젝트"],
     links: {
-      web: "https://dessertreact-last.vercel.app/",
-      github: "https://github.com/wjddk6405-creator/delta",
+      web: "https://wjddk6405-creator.github.io/NFNL/",
+      github: "https://github.com/wjddk6405-creator/NFNL",
     },
     images: {
-      desktop: "asset/img/dessertpc.png",
+      desktop: "asset/img/nfnlpc.png",
+      tablet: "asset/img/nfnlpad.png",
+      mobile: "asset/img/nfnlmobile.png",
     },
   },
   {
-    id: 2,
+    id: 3,
     title: "MegaBox",
-    desc: "MegaBox 사이트의 클론 코딩 작업물입니다.",
+    desc: "MegaBox 사이트의 클론 코딩 사이트입니다.",
     tags: ["#반응형", "#자바스크립트", "#슬라이드"],
     links: {
       web: "https://wjddk6405-creator.github.io/MOVIESITE/",
@@ -43,24 +46,9 @@ const PROJECTS = [
     },
   },
   {
-    id: 3,
-    title: "NFNL",
-    desc: "맛집 킬러라는 컨셉으로 제작된 가상의 맛집 커뮤니티 웹 사이트입니다.",
-    tags: ["#반응형", "#자바스크립트", "#GSAP", "#팀프로젝트"],
-    links: {
-      web: "https://wjddk6405-creator.github.io/NFNL/",
-      github: "https://github.com/wjddk6405-creator/NFNL/settings/pages",
-    },
-    images: {
-      desktop: "asset/img/nfnlpc.png",
-      tablet: "asset/img/nfnlpad.png",
-      mobile: "asset/img/nfnlmobile.png",
-    },
-  },
-  {
     id: 4,
     title: "Delta",
-    desc: "Delta 항공 사이트의 클론 코딩 작업물입니다.",
+    desc: "Delta 항공 사이트의 클론 코딩 사이트입니다.",
     tags: ["#반응형", "슬라이드"],
     links: {
       web: "https://wjddk6405-creator.github.io/delta/",
@@ -74,17 +62,29 @@ const PROJECTS = [
   },
   {
     id: 5,
-    title: "Delta",
-    desc: "Delta 항공 사이트의 클론 코딩 작업물입니다.",
-    tags: ["#반응형", "슬라이드"],
+    title: "Dessert",
+    desc: "리액트를 활용한 DESSERT 사이트입니다.",
+    tags: ["슬라이드", "자바스크립트", "리액트"],
     links: {
-      web: "https://wjddk6405-creator.github.io/delta/",
-      github: "https://github.com/wjddk6405-creator/delta",
+      web: "https://dessertreact-last.vercel.app/",
+      github: "https://github.com/wjddk6405-creator/dessertreact-last",
     },
     images: {
-      desktop: "asset/img/deltapc.png",
-      tablet: "asset/img/deltapad.png",
-      mobile: "asset/img/deltamobile.png",
+      desktop: "asset/img/dessertpc.png",
+    },
+  },
+
+  {
+    id: 6,
+    title: "SKIN Rx",
+    desc: "SKIN Rx사이트의 클론 코딩 사이트입니다.",
+    tags: ["#슬라이드", "#자바스크립트"],
+    links: {
+      web: "https://wjddk6405-creator.github.io/skinRx/",
+      github: "https://github.com/wjddk6405-creator/skinRx",
+    },
+    images: {
+      desktop: "asset/img/skinRx.png",
     },
   },
 ];
@@ -113,46 +113,54 @@ function updateMainDisplay(project) {
     mainTags.appendChild(span);
   });
 
-  // 이미지 설정
-  imgDesktop.src = project.images.desktop;
-  imgTablet.src = project.images.tablet;
-  imgMobile.src = project.images.mobile;
+  // 💡 이미지 설정 로직 수정
+  // 기존 클래스 제거 후, 이미지 개수에 따라 별도 클래스 부여 (CSS 제어용)
+  const mockupGroup = document.querySelector(".mockup-group");
+  mockupGroup.classList.remove("single-image", "multiple-images");
 
-  // 💡 [핵심 교정] 카드를 누를 때마다 버튼의 연결 링크(href)를 실시간으로 갈아끼웁니다.
-  if (btnWeb && project.links && project.links.web) {
-    btnWeb.href = project.links.web;
-  } else if (btnWeb) {
-    btnWeb.href = "#";
+  if (project.images.tablet && project.images.mobile) {
+    mockupGroup.classList.add("multiple-images");
+    imgDesktop.parentElement.style.display = "block";
+    imgTablet.parentElement.style.display = "block";
+    imgMobile.parentElement.style.display = "block";
+
+    imgDesktop.src = project.images.desktop;
+    imgTablet.src = project.images.tablet;
+    imgMobile.src = project.images.mobile;
+  } else {
+    // 이미지 하나만 있을 때
+    mockupGroup.classList.add("single-image");
+    imgDesktop.parentElement.style.display = "block";
+    imgTablet.parentElement.style.display = "none"; // 나머지 숨김
+    imgMobile.parentElement.style.display = "none"; // 나머지 숨김
+
+    imgDesktop.src = project.images.desktop;
   }
 
-  if (btnGithub && project.links && project.links.github) {
-    btnGithub.href = project.links.github;
-  } else if (btnGithub) {
-    btnGithub.href = "#"; // 주소가 없거나 # 일 때는 기본값 처리
-  }
+  // 버튼 링크 업데이트는 동일
+  btnWeb.href = project.links.web || "#";
+  btnGithub.href = project.links.github || "#";
 }
 
 // 슬라이더 초기화 함수
-
 function initSlider() {
   PROJECTS.forEach((project, index) => {
     const card = document.createElement("div");
-    card.classList.add("slide-card");
+
+    // 💡 [교정] 일반 카드 클래스와 함께 Swiper 전용 슬라이드 클래스도 함께 줍니다.
+    card.classList.add("slide-card", "swiper-slide");
 
     if (project.images && project.images.desktop) {
       card.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('${project.images.desktop}')`;
     }
 
-    // 2. 카드 내부에 프로젝트 제목 텍스트 삽입
     card.textContent = project.title;
 
-    // 첫 번째 프로젝트 자동 활성화
     if (index === 0) {
       card.classList.add("active");
       updateMainDisplay(project);
     }
 
-    // 카드 클릭 이벤트
     card.addEventListener("click", () => {
       document.querySelector(".slide-card.active")?.classList.remove("active");
       card.classList.add("active");
@@ -161,8 +169,25 @@ function initSlider() {
 
     sliderContainer.appendChild(card);
   });
+
+  // 💡 [핵심] 카드가 다 생성된 직후에 Swiper를 가동시킵니다!
+  initSwiperPlugin();
 }
 
+// 💡 Swiper 가동 및 옵션 설정 (정확히 3개 보여주기 + 마우스 휠 작동)
+function initSwiperPlugin() {
+  new Swiper(".slider-section", {
+    slidesPerView: 3, // 🔥 한 화면에 정확히 카드 3개 보여주기!
+    spaceBetween: 20, // 카드 사이의 간격 (gap처럼 20px)
+    mousewheel: true, // 🔥 마우스 휠을 굴리면 가로로 슬라이드 넘어가기!
+    nested: true, // 상위 페이지 스크롤과 부딪히지 않도록 보호
+
+    autoplay: {
+      delay: 5000,
+      disableOnInteraction: false, // 💡 사용자가 카드를 클릭하거나 마우스로 밀어도 자동 슬라이드가 멈추지 않고 계속 작동하게 합니다.
+    },
+  });
+}
 // 최초 실행
 initSlider();
 

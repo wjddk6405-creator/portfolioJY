@@ -13,6 +13,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <!-- 스와이퍼 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <!-- 영역 별 css -->
     <link rel="stylesheet" href="asset/css/nav.css" />
@@ -247,7 +249,7 @@
 
     <div id="videoSection" style="position: absolute; transform: translateY(-50px)"></div>
 
-    <section class="main-container">
+    <section id="VideoCusor" class="main-container">
       <div class="fixed-intro-text">
         <h1>VIDEO TRACK</h1>
       </div>
@@ -373,8 +375,8 @@
         <span class="next-loot-text">NEXT LOOT ></span>
       </div>
 
-      <section class="slider-section">
-        <div id="slider-container" class="slider-container"></div>
+      <section class="slider-section swiper">
+        <div id="slider-container" class="swiper-wrapper"></div>
       </section>
       <img class="webSpider" src="asset/img/1f577-fe0f.gif" alt="거미" />
     </div>
@@ -422,6 +424,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <script src="asset/JS/lenis.js"></script>
